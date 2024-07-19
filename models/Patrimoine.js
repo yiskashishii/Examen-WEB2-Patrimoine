@@ -7,7 +7,15 @@ export default class Patrimoine {
   getValeur(date) {
     let result = 0;
     for (const possession of this.possessions) {
-      result += possession.valeur;
+      if (possession.amortissement == 0) {
+        result += possession.valeur;
+      } else {
+        let year = date.getFullYear() - possession.date.getFullYear();
+        let valeur_amortissement =
+          (possession.valeur * possession.amortissement) / 100;
+        let valeur_final = possession.valeur - year * valeur_amortissement;
+        result += valeur_final;
+      }
     }
     return result;
   }
