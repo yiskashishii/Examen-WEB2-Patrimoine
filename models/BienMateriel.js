@@ -11,7 +11,4 @@ export default class BienMateriel extends Possession {
     const result = amortissement(this.date, date, this.valeur, this.taux);
     return result > 0 ? result : 0;
   }
-  getValeur() {
-    return this.valeur;
-  }
 }
