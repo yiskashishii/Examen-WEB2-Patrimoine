@@ -1,59 +1,50 @@
-import Patrimoine from "./models/Patrimoine.js";
-import Possession from "./models/Possession.js";
 import Personne from "./models/Personne.js";
+import Possession from "./models/Possession.js";
+import Patrimoine from "./models/Patrimoine.js";
+import BienMateriel from "./models/BienMateriel.js";
+import CompteCourant from "./models/CompteCourant.js";
 
-const ilo = new Personne("Ilo");
-const date1 = new Date("2024-05-13");
-const possession1 = new Possession(ilo, "argent", "espece", 400_000, 0, date1);
-const possession2 = new Possession(
-  ilo,
-  "argent",
+const Ilo = new Personne("Ilo");
+const dateArgent = new Date("2024-05-13");
+const espece = new Possession(Ilo, "espece", 400_000, dateArgent);
+const compteEpargne = new Possession(
+  Ilo,
   "compte epargne",
   200_000,
-  0,
-  date1,
+  dateArgent,
 );
-const possession3 = new Possession(
-  ilo,
-  "argent",
-  "conpte courant",
-  600_000,
-  0,
-  date1,
-);
-const possession4 = new Possession(
-  ilo,
-  "bien materiel",
-  "ordinateur",
+const oridnateur = new BienMateriel(
+  Ilo,
+  "oridnateur",
   2_000_000,
-  10,
   new Date("2021-10-26"),
+  10,
 );
-const possession5 = new Possession(
-  ilo,
-  "bien materiel",
-  "vetement",
+const vetements = new BienMateriel(
+  Ilo,
+  "vetements",
   1_000_000,
-  20,
   new Date("2024-01-01"),
+  20,
 );
-const possession6 = new Possession(
-  ilo,
-  "train de vie",
-  "train de vie",
-  500_000,
-  0,
-  date1,
+const trainDeVie = new Possession(Ilo, "trainDeVie", 500_000, dateArgent);
+const salaire = new Possession(Ilo, "salaire", 0, dateArgent);
+const compteCourant = new CompteCourant(
+  Ilo,
+  "compte courant",
+  600_000,
+  dateArgent,
+  salaire,
+  trainDeVie,
 );
 const possessionIlo = [
-  possession1,
-  possession2,
-  possession3,
-  possession4,
-  possession5,
-  possession6,
+  espece,
+  compteEpargne,
+  compteCourant,
+  oridnateur,
+  vetements,
 ];
-const patrimoineIlo = new Patrimoine(ilo, date1, possessionIlo);
+const patrimoineIlo = new Patrimoine(Ilo, possessionIlo);
 
-const result = patrimoineIlo.getValeur(new Date("2024-06-26"));
-console.log(result);
+console.log(patrimoineIlo.getValeur(new Date("2024-07-14")));
+// console.log(compteCourant.getValeur(new Date("2024-07-14")));
