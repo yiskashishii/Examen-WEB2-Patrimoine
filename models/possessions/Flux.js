@@ -23,21 +23,18 @@ export default class Flux extends Possession {
     // calcul différence entre date et date debut
 
     const prd = (debut, dateEvaluation, jourJ) => {
-        let start = new Date(debut);
-        let end = new Date(dateEvaluation);
-        let Dday = jourJ;
         
         let compteur = 0;
     
-        if (start.getDate() <= Dday) {
+        if (debut.getDate() <= jourJ) {
             compteur++;
         }
         
-        if (end.getDate() >= Dday && !(start.getFullYear() === end.getFullYear() && start.getMonth() === end.getMonth())) {
+        if (dateEvaluation.getDate() >= jourJ && !(debut.getFullYear() === dateEvaluation.getFullYear() && debut.getMonth() === dateEvaluation.getMonth())) {
             compteur++;
         }
         
-        let totalMois = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth()) - 1;
+        let totalMois = (dateEvaluation.getFullYear() - debut.getFullYear()) * 12 + (dateEvaluation.getMonth() - debut.getMonth()) - 1;
     
         compteur += Math.max(0, totalMois);
     
@@ -46,7 +43,7 @@ export default class Flux extends Possession {
 
     // calcul montant total
 
-    this.valeur += prd(this.dateDebut, date, this.jour.getDate()) * this.valeurConstante;
+    this.valeur += prd(this.dateDebut, date, this.jour) * this.valeurConstante;
 
     return this.valeur;
   }
