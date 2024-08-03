@@ -20,7 +20,7 @@ export default class Flux extends Possession {
 
   getValeur(date) {
 
-    const prd = (debut, dateEvaluation, jourJ) => {
+    const nombreDeMois = (debut, dateEvaluation, jourJ) => {
         
         let compteur = 0;
     
@@ -41,7 +41,7 @@ export default class Flux extends Possession {
 
     // calcul montant total
 
-    this.valeur += prd(this.dateDebut, date, this.jour) * this.valeurConstante;
+    this.valeur += nombreDeMois(this.dateDebut, date, this.jour) * this.valeurConstante;
 
     return this.valeur;
   }
