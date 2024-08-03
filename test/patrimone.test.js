@@ -4,6 +4,7 @@ import Flux from "../models/possessions/Flux.js"
 import Personne from "../models/Personne.js"
 import  Possession  from "../models/possessions/Possession.js"
 import Argent from '../models/possessions/Argent.js'
+import Patrimoine from "../models/Patrimoine.js"
 
 const TYPE_ARGENT = {
     Courant: "Courant",
@@ -16,7 +17,7 @@ describe("Test about salary evaluation", () => {
 
     var Ilo = new Personne("Ilo");
 
-    it("should return 2_000", () => {
+    it("should return 0", () => {
         
         const salary = new Flux(
             Ilo, 
@@ -27,7 +28,7 @@ describe("Test about salary evaluation", () => {
             0, 
             3);
 
-        assert.equal(salary.getValeur(new Date("2024-3-3")), 2_000);
+        assert.equal(salary.getValeur(new Date("2024-3-3")), 0);
 
     });
 
@@ -39,12 +40,12 @@ describe("Test about salary evaluation", () => {
             new Date("2024-3-3"), 
             null, 
             0, 
-            3);
+            4);
 
-        assert.equal(salary.getValeur(new Date("2024-5-3")), 10_000);
+        assert.equal(salary.getValeur(new Date("2024-5-3")), 5000);
     });
 
-    it("should return 3_000_000", () => {
+    it("should return 2_400_000", () => {
         const salary = new Flux(
             Ilo, 
             "salary", 
@@ -54,7 +55,7 @@ describe("Test about salary evaluation", () => {
             0, 
             15);
 
-        assert.equal(salary.getValeur(new Date("2024-6-15")), 3_000_000);
+        assert.equal(salary.getValeur(new Date("2024-6-14")), 1_800_000);
     });
 })
 
@@ -73,7 +74,7 @@ describe("Test about spending evaluation", () => {
             0, 
             1);
 
-        assert.equal(spending.getValeur(new Date("2024-3-3")), -100_000);
+        assert.equal(spending.getValeur(new Date("2024-3-3")), 0);
     })
 
     it("should return -240_000", () => {
@@ -86,7 +87,7 @@ describe("Test about spending evaluation", () => {
             0, 
             2);
 
-        assert.equal(spending.getValeur(new Date("2024-4-6")), -240_000);
+        assert.equal(spending.getValeur(new Date("2024-4-6")), -120_000);
     });
 })
 

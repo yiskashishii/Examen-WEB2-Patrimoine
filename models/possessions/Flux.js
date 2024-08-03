@@ -8,7 +8,7 @@ export default class Flux extends Possession {
   // Si train de vie => -
   constructor(possesseur, libelle, valeur, dateDebut, dateFin, tauxAmortissement, jour) {
     super(possesseur, libelle, valeur, dateDebut, dateFin, tauxAmortissement)
-    this.valeur = valeur;
+    this.valeur = 0;
     this.jour = jour;
     // this.source = source; // null || Compte
     // this.destination = destination; // Compte
@@ -19,14 +19,12 @@ export default class Flux extends Possession {
 
 
   getValeur(date) {
-    // TODO: calculer le montant total du flux en prenant compte du jour de versement
-    // calcul différence entre date et date debut
 
     const prd = (debut, dateEvaluation, jourJ) => {
         
         let compteur = 0;
     
-        if (debut.getDate() <= jourJ) {
+        if (debut.getDate() < jourJ) {
             compteur++;
         }
         
